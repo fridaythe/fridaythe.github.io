@@ -1,0 +1,1 @@
+# fridaythe.github.io
