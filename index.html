@@ -1,0 +1,217 @@
+
+<!DOCTYPE html><html class=''>
+<head>
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css'>
+<style class="cp-pen-styles">*{margin:0; padding: 0; box-sizing:border-box;}
+		html,body{background: #000; height: 100%; text-align: center;}
+		h2{
+			text-align: center;
+			font-family: 'Butcherman', cursive;
+			color: #a00c0c;
+			font-size: 80px;
+			text-shadow: 5px 5px 0 #500707;
+		}
+		h2 span{
+			font-size: 40px;
+		}
+		.mask{
+			padding: 195px 0;
+			background-image: url('https://i.pinimg.com/originals/23/e3/03/23e303ec06b529de3aba04ef7760d202.jpg');
+			background-position: center center;
+			width: 350px;
+			height: 500px;
+			margin:0 auto;
+			background-size: cover;
+		}
+		.eye {
+			position: relative;
+			display: inline-block;
+			width: 60px;
+			height: 50px;
+			border-radius: 100%;
+			overflow: hidden;
+			margin:0 30px;
+			background: #000;
+
+		}
+		.pupille {
+			position: absolute;
+			top: 50%
+			left: 50%;
+			width: 20px;
+			height: 20px;
+			background-color: #000;
+			border-radius: 100%;
+			box-shadow: 0 0  0 15px #500;
+		}
+		.pupille:after{
+			content: " ";
+			position: absolute;
+			width: 5px;
+			height: 5px;
+			background: #666;
+			position: absolute;
+			border-radius: 100%;
+			top: 10px;
+			right: 10px;
+		}
+		*[class*="rain"]{
+			position: fixed;
+			top: 0;
+			left:0;
+			width: 100%;
+			height: 100%;
+			background-image: url('https://i.pinimg.com/originals/cf/57/6b/cf576ba3826f4b9a29d0baf9d372f197.png');
+			background-size: cover;
+			background-position: top;
+			z-index: 100;
+			opacity: 0.1;
+		}
+		.rain{
+			animation: raining linear infinite 0.2s;
+		}
+		.rain2{
+			animation: raining linear infinite 2s;
+		}
+		@keyframes raining {
+		    from {background-position: bottom;}
+		    to {background-position: top;}
+		}
+
+		span#shadow{
+			position: fixed;
+			border-radius: 10000px;
+			height: 10000px;
+			width: 10000px;
+			background-attachment: fixed;
+			background-size: 200% 200%;
+			background-position: -50% -50%;
+			box-shadow: 0 0 5000px 4500px #000 inset, 0 0 5000px 5000px #000;
+			margin-top:-5000px;
+			margin-left:-5000px;
+			z-index: 1000;
+			animation: shadow 1s 1 ;
+		}
+		@keyframes shadow {
+		    from {box-shadow: 0 0 5000px 6000px #000 inset, 0 0 5000px 5000px #000;}
+		    to {box-shadow: 0 0 5000px 4500px #000 inset, 0 0 5000px 5000px #000;}
+		}
+		span#thunder{
+			position: fixed;
+			background: #fff;
+			height: 100%;
+			width: 100%;
+			z-index: 1500;
+			opacity: 0;
+			top:0;
+			left:0;
+			animation: thunder 10s infinite;
+		}
+		@keyframes thunder {
+		    1% {opacity: 0;}
+		    49% {opacity: 0;}
+		    50% {opacity: 0.5;}
+		    51% {opacity: 0;}
+		    52% {opacity: 0.5;}
+		    53% {opacity: 0;}
+		    54% {opacity: 0.5;}
+		    55% {opacity: 0;}
+		    100% {opacity: 0}
+		}
+		div.footer{
+			width: 100%;
+			position: fixed;
+			bottom: 0;
+			z-index: 2000;
+			color:#ccc;
+		}
+		div.footer *{
+			color:#ccc;
+			text-decoration: none;
+		}</style></head><body>
+<link href="https://fonts.googleapis.com/css?family=Butcherman" rel="stylesheet">
+<h2>Friday <span>the</span> 13<span>th</span></h2>
+	<div class="mask">
+		<div id="eyeL" class="eye">
+			<div id="pupilL" class="pupille"></div>
+		</div>
+		<div id="eyeR" class="eye">
+			<div id="pupilR" class="pupille"></div>
+		</div>
+	</div>
+	<div class="rain"></div>
+	<div class="rain2"></div>
+	<span id="shadow"></span>
+	<span id="thunder"></span>
+
+
+	<div class="footer">
+		Created by <a href="https://twitter.com/JesGraPa" target="_blank">@JesGraPa</a> -
+		<a href="https://codepen.io/JesGraPa/" target="_blank">More Pens</a>
+		<br><br>
+	</div>
+<script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script><script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+<script >var pupilL = $('#pupilL');
+		var pupilR = $('#pupilR');
+
+		$(document).on('mousemove', function(e){
+
+
+		    $('#shadow').css({
+		       left:  e.pageX,
+		       top:   e.pageY
+		    });
+
+		    var abstandV1 = pupilL.offset().top- e.pageY + pupilL.height()/2;
+
+		    var pupilleL1 = pupilL.position().top - abstandV1;
+		    var eyeL = $("#eyeL")
+		    var distanceX=eyeL.width()-pupilL.width();
+		    var distanceY=eyeL.height()-pupilL.height();
+		    if(pupilleL1 > distanceY) {
+		      (pupilleL1 = distanceY);
+		               }
+		    if(pupilleL1 < 0) {
+		      (pupilleL1 = 0);
+		               }
+		    var abstandH1 = pupilL.offset().left- e.pageX + pupilL.width()/2;
+		    var pupilleL2 = pupilL.position().left - abstandH1 ;
+		    if (pupilleL2 < 0) {
+		       (pupilleL2 = 0);
+		               }
+		    if(pupilleL2 > distanceX) {
+		      (pupilleL2 =distanceX);
+		               }
+		    pupilL.css({
+		        left: pupilleL2+"px",
+		        top: pupilleL1+"px"
+          				});
+
+		    var abstandH2 = pupilR.offset().left- e.pageX + pupilR.width()/2;
+		    var pupilleR1 = pupilR.position().left - abstandH2;
+		    var eyeR = $("#eyeR")
+		    var distanceX2=eyeR.width()-pupilR.width();
+		    var distanceY2=eyeR.height()-pupilR.height();
+		    if(pupilleR1 < 0) {
+		      (pupilleR1 = 0);
+		               }
+		    if(pupilleR1 > distanceX2) {
+		      (pupilleR1 = distanceX2);
+		               }
+		    var abstandV2 = pupilR.offset().top- e.pageY + pupilR.width()/2;
+		    var pupilleR2 = pupilR.position().top - abstandV2;
+		    if(pupilleR2 < 0) {
+		      (pupilleR2 = 0);
+		               }
+		    if(pupilleR2 > distanceY2) {
+		      (pupilleR2 =distanceY2);
+		               }
+		    pupilR.css({
+		            left: pupilleR1+"px",
+		            top: pupilleR2+"px"
+		               });
+
+		    });
+//# sourceURL=pen.js
+</script>
+</body></html>
